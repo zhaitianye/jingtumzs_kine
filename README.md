@@ -1,7 +1,7 @@
-# jcc_kline
+# jingtumzs_kline
 
-[![Build Status](https://travis-ci.com/JCCDex/jcc_kline.svg?branch=master)](https://travis-ci.com/JCCDex/jcc_kline)
-[![Coverage Status](https://coveralls.io/repos/github/JCCDex/jcc_kline/badge.svg)](https://coveralls.io/github/JCCDex/jcc_kline)
+源码来源于 jcc_kline
+
 
 ## Installtion
 
