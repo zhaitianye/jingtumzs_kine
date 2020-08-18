@@ -36,17 +36,17 @@ class KLineMobileSetChartController {
         if (noData) {
             this.kline.showLoading({
                 text: message.noData,
-                color: '#161b21',
-                textColor: '#fff',
-                maskColor: 'rgba(22, 27, 33, 0.5)',
+                color: '#42b983',
+                textColor: '#000',
+                maskColor: 'rgba(255, 255, 255, 0.8)',
                 zlevel: 1
             });
         } else {
             this.kline.showLoading({
                 text: message.loading,
-                color: '#fff',
-                textColor: '#fff',
-                maskColor: 'rgba(22, 27, 33, 0.5)',
+                color: '#42b983',
+                textColor: '#000',
+                maskColor: 'rgba(255, 255, 255, 0.8)',
                 zlevel: 1
             });
         }

@@ -32,8 +32,8 @@ export default {
         backgroundColor: "#161b21",
         defaultSize: false,
         size: {
-          width: 1000,
-          height: 400
+          width: width * 0.8,
+          height: height * 0.8
         },
         defaultMA: false,
         MA: [
@@ -95,8 +95,8 @@ export default {
         backgroundColor: "#161b21",
         defaultSize: false,
         size: {
-          width: 1000,
-          height: 400
+          width: width * 0.8,
+          height: height * 0.8
         },
         MA: [
           {
