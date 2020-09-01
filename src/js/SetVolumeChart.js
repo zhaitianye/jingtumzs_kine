@@ -214,7 +214,7 @@ class VolumeChart {
                 itemStyle: {
                     normal: {
                         color: function (param) {
-                            return param.value[2] <= 0 ? '#ee4b4b' : '#3ee99f';
+                            return param.value[2] <= 0 ? '#ee4b4b' : '#42B983';
                         }
                     }
                 }

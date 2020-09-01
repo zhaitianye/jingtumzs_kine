@@ -101,7 +101,7 @@ var mobileOption = {
             itemStyle: { // K 线图的图形样式
                 normal: {
                     color: '#ee4b4b', // 阳线 图形的颜色
-                    color0: '#3ee99f', // 阴线 图形的颜色
+                    color0: '#42B983', // 阴线 图形的颜色
                     borderColor: null, // 阳线 图形的描边颜色
                     borderColor0: null // 阴线 图形的描边颜色
                 }

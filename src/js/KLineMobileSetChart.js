@@ -215,7 +215,7 @@ class KLineMobileSetChartController {
                 itemStyle: {
                     normal: {
                         color: '#ee4b4b',
-                        color0: '#3ee99f',
+                        color0: '#42B983',
                         borderColor: null,
                         borderColor0: null
                     }

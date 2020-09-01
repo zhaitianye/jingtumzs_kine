@@ -95,7 +95,7 @@ var volumeOption = {
             itemStyle: {
                 normal: {
                     color: function (param) { // 柱条的颜色
-                        return param.value[2] <= 0 ? '#ee4b4b' : '#3ee99f';
+                        return param.value[2] <= 0 ? '#ee4b4b' : '#42B983';
                     }
                 }
             }
@@ -208,7 +208,7 @@ var volumeMoobileOption = {
             itemStyle: {
                 normal: {
                     color: function (param) { // 柱条的颜色
-                        return param.value[2] <= 0 ? '#ee4b4b' : '#3ee99f';
+                        return param.value[2] <= 0 ? '#ee4b4b' : '#42B983';
                     }
                 }
             }
