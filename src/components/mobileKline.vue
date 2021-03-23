@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-kline" style="background-color: #161b21;">
     <!-- Cycle按钮 -->
-    <div calss="mobileCycle" style="height: 0.4rem; z-index: 9;">
+    <div calss="mobileCycle" style="height: 55px; z-index: 9;">
       <div class="kline-cycle-div">
         <div @click="clickMinCycle()">
           <div

@@ -1,231 +1,142 @@
 <template>
-  <div class="mobile-kline" style="background-color: #161b21;">
-    <!-- Cycle按钮 -->
-    <div calss="mobileCycle" style="height: 60px; z-index: 9;">
-      <div class="kline-cycle-div">
-        <div @click="clickMinCycle()">
-          <div
-            :class="!this.showMinCycle ? this.message.language === 'en' ? 'mobile-kline-drop-down-en':'mobile-kline-drop-down' : this.message.language === 'en' ? 'mobile-kline-drop-down-en kline-select-color':'mobile-kline-drop-down kline-select-color'"
-          >
-            <font
-              :class="selectMin !== '分'  ? selectMin !== 'm' ? 'kline-select-color kline-text-decoration' : 'kline-uncheck-color' : 'kline-uncheck-color'"
-            >{{selectMin}}</font>
-            <i
-              :class="!this.showMinCycle ? 'drop-down-icon mobile-drop-down' : 'drop-down-select mobile-drop-down'"
-            ></i>
-          </div>
-          <div v-show="showMinCycle" class="mobile-kline-cycle-float">
-            <div
-              @click="chooseCycle('minute')"
-              :class="this.currentCycle === 'minute' ? 'mobile-kline-cycle-detail kline-select-color' : 'mobile-kline-cycle-detail kline-uncheck-color'"
-            >{{message.oneMin}}</div>
-            <div
-              @click="chooseCycle('5minute')"
-              :class="this.currentCycle === '5minute' ? 'mobile-kline-cycle-detail kline-select-color' : 'mobile-kline-cycle-detail kline-uncheck-color'"
-            >{{message.fiveMin}}</div>
-            <div
-              @click="chooseCycle('15minute')"
-              :class="this.currentCycle === '15minute' ? 'mobile-kline-cycle-detail kline-select-color' : 'mobile-kline-cycle-detail kline-uncheck-color'"
-            >{{message.fifteenMin}}</div>
-            <div
-              @click="chooseCycle('30minute')"
-              :class="this.currentCycle === '30minute' ? 'mobile-kline-cycle-detail kline-select-color' : 'mobile-kline-cycle-detail kline-uncheck-color'"
-            >{{message.thirtyMin}}</div>
-          </div>
-        </div>
-        <div @click="clickHourCycle()">
-          <div
-            :class="!this.showHourCycle  ? this.message.language === 'en' ? 'mobile-kline-drop-down-en':'mobile-kline-drop-down' : this.message.language === 'en' ? 'mobile-kline-drop-down-en kline-select-color':'mobile-kline-drop-down kline-select-color'"
-          >
-            <font
-              :class="selectHour !== '时'  ? selectHour !== 'H' ? 'kline-select-color kline-text-decoration' : 'kline-uncheck-color' : 'kline-uncheck-color'"
-            >{{selectHour}}</font>
-            <i
-              :class="!this.showHourCycle ? 'drop-down-icon mobile-drop-down' : 'drop-down-select mobile-drop-down'"
-            ></i>
-          </div>
-          <div v-show="showHourCycle" class="mobile-kline-cycle-float kline-hour-cycle">
-            <div
-              @click="chooseCycle('hour')"
-              :class="this.currentCycle === 'hour' ? 'mobile-kline-cycle-detail kline-select-color' : 'mobile-kline-cycle-detail kline-uncheck-color'"
-            >{{message.oneHour}}</div>
-            <div
-              @click="chooseCycle('4hour')"
-              :class="this.currentCycle === '4hour' ? 'mobile-kline-cycle-detail kline-select-color' : 'mobile-kline-cycle-detail kline-uncheck-color'"
-            >{{message.fourHour}}</div>
-          </div>
-        </div>
-      </div>
-      <div
-        @click="chooseCycle('day')"
-        :class="this.currentCycle === 'day' ? 'mobile-cycle-btn mobile-btn-active' : 'mobile-cycle-btn'"
-      >{{message.day}}</div>
-      <div
-        @click="chooseCycle('week')"
-        :class="this.currentCycle === 'week' ? 'mobile-cycle-btn mobile-btn-active' : 'mobile-cycle-btn'"
-      >{{message.week}}</div>
-      <div
-        @click="chooseCycle('month')"
-        :class="this.currentCycle === 'month' ? 'mobile-cycle-btn mobile-btn-active' : 'mobile-cycle-btn'"
-      >{{message.month}}</div>
-      <div
-        @click="chooseCycle('everyhour')"
-        :class="this.currentCycle === 'everyhour' ? 'mobile-cycle-btn mobile-btn-active' : 'mobile-cycle-btn'"
-      >{{message.timeSharing}}</div>
-      <!-- 指标线图标 -->
-      <div @click="openCloseIndicator" class="indicator-select-div">
-        <i
-          v-show="showIndicatorBtn"
-          :class="this.showIndicatorDiv ? 'icon iconfont icon-indicator-selected' : 'icon iconfont icon-indicator-unselected'"
-        ></i>
-      </div>
-    </div>
-    <!-- 指标线按钮 -->
-    <div v-show="showIndicatorDiv && currentCycle !== 'everyhour'" class="indicatorConfigure">
-      <div class="mobile-indicator">
-        <div class="indicator-font">
-          <font>{{message.indicator}}</font>
-        </div>
-        <div
-          @click="showMA"
-          :class="this.showIndicatorMA ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >{{message.MA}}</div>
-        <div
-          @click="showIndicatorChart('MACD')"
-          :class="this.showIndicator ==='MACD' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.MACD}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('KDJ')"
-          :class="this.showIndicator ==='KDJ' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.KDJ}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('RSI')"
-          :class="this.showIndicator ==='RSI' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.RSI}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('MTM')"
-          :class="this.showIndicator ==='MTM' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.MTM}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('WR')"
-          :class="this.showIndicator ==='WR' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.WR}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('VR')"
-          :class="this.showIndicator ==='VR' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.VR}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('OBV')"
-          :class="this.showIndicator ==='OBV' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.OBV}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('TRIX')"
-          :class="this.showIndicator ==='TRIX' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.TRIX}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('DMI')"
-          :class="this.showIndicator ==='DMI' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.DMI}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('PSY')"
-          :class="this.showIndicator ==='PSY' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.PSY}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('ROC')"
-          :class="this.showIndicator ==='ROC' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.ROC}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('BRAR')"
-          :class="this.showIndicator ==='BRAR' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.BRAR}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('DMA')"
-          :class="this.showIndicator ==='DMA' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.DMA}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('Boll')"
-          :class="this.showIndicator ==='Boll' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.Boll}}</div>
-        </div>
-        <div
-          @click="showIndicatorChart('SAR')"
-          :class="this.showIndicator ==='SAR' ? 'mobile-indicator-div-active' : 'mobile-indicator-div'"
-        >
-          <div class="indicator-mobile-line">{{message.SAR}}</div>
-        </div>
-      </div>
-      <div
-        @click="openCloseEyes"
-        :class="this.showIndicator === '' ? 'close-eye-icon' : 'open-eye-icon'"
-      ></div>
-    </div>
-    <!-- mobile kline -->
+  <div>
     <div
-      id="kline"
-      ref="klineRef"
-      :style="{height: `${klineConfig.size.height * 0.82}px`, width: `${klineConfig.size.width}px`}"
-      @click="getToolTipIndex"
-    ></div>
-    <div style="background:#2b2f33; height:0.1rem"></div>
+      :class="this.message.language === 'zh' ? 'mobile-tooltip-zh' : 'mobile-tooltip-en'"
+      v-if="toolTipData"
+    >
+      <div style="margin-left: -0.1rem; margin-top: 0.05rem;">
+        <font class="mobile-tooltip-name">{{message.openingMobile}}</font>
+        <font class="mobile-tooltip-data">{{this.toolTipData.opening}}</font>
+        <font class="mobile-tooltip-name">{{message.closingMobile}}</font>
+        <font class="mobile-tooltip-data">{{this.toolTipData.closing}}</font>
+        <font class="mobile-tooltip-name">{{message.maxMobile}}</font>
+        <font class="mobile-tooltip-data">{{this.toolTipData.max}}</font>
+        <font class="mobile-tooltip-name">{{message.minMobile}}</font>
+        <font class="mobile-tooltip-data">{{this.toolTipData.min}}</font>
+        <font class="mobile-tooltip-name">{{message.volumeMobile}}</font>
+        <font class="mobile-tooltip-data">{{this.toolTipData.volume}}</font>
+      </div>
+      <div v-show="showIndicatorMA" style="font-size:0.16rem; margin-top: 0.1rem;">
+        <font
+          v-for="MAitem in this.klineConfig.MA"
+          :key="MAitem.id"
+          :style="{ color: MAitem.color, marginRight: '0.14rem'}"
+        >
+          {{MAitem.name}}
+          <font>:&nbsp;{{ getMATipData(MAitem.name) }}</font>
+        </font>
+        <br />
+      </div>
+    </div>
+    <!-- timeDivision tootip 数据显示 -->
+    <div
+      :class="this.message.language === 'en' ? 'time-sharing-en-data' : 'time-sharing-zh-data'"
+      v-if="timeSharingTipData"
+    >
+      <font
+        :class="timeSharingTipData.color === 1 ? 'tooltip-data-green' : 'tooltip-data-red'"
+      >{{this.timeSharingTipData.time}}</font>
+      <font class="mobile-tooltip-name">{{message.volumeMobile}}</font>
+      <font
+        :class="timeSharingTipData.color === 1 ? 'tooltip-data-green' : 'tooltip-data-red'"
+      >{{this.timeSharingTipData.volume}}</font> &nbsp;
+      <font class="mobile-tooltip-name">{{message.price}}</font>
+      <font
+        :class="timeSharingTipData.color === 1 ? 'tooltip-data-green' : 'tooltip-data-red'"
+      >{{this.timeSharingTipData.price}}</font> &nbsp;
+      <font class="mobile-tooltip-name">{{message.averagePrice}}</font>
+      <font
+        :class="timeSharingTipData.color === 1 ? 'tooltip-data-green' : 'tooltip-data-red'"
+      >{{this.timeSharingTipData.averagePrice}}</font> &nbsp;
+      <br />
+    </div>
+    <!-- 平移、刷新、缩放按钮 -->
+    <div class="kline-levitation-mobile-div">
+      <div class="kline-levitation-icon">
+        <div class="kline-levitation-btn" @click="changeDataZoom('narrow')">
+          <i class="narrow-icon"></i>
+        </div>
+        <div class="kline-levitation-btn" @click="changeDataZoom('enlarge')">
+          <i class="enlarge-icon"></i>
+        </div>
+      </div>
+    </div>
+    <KLine
+      ref="candle"
+      v-show="showChart === 'candle'"
+      v-on:listenToChildEvent="changeCycle"
+      v-on:listenTipIndex="getTipDataIndex"
+      v-on:listenIndicatorChartOpenClose="getIndicatorOpenClose"
+      @listenShowMA="showMA"
+      :kline-config="klineConfig"
+      :chart-data-obj="chartDataObj"
+    ></KLine>
+    <Volume
+      ref="volume"
+      v-show="showChart === 'candle'"
+      v-on:listenToTipIndex="getTipDataIndex"
+      :kline-config="klineConfig"
+      :chart-data-obj="chartDataObj"
+      :cycle="cycle"
+    ></Volume>
+    <Indicator
+      ref="indicator"
+      v-show="showIndicatorChart != null &&cycle !== 'everyhour'"
+      :toolTipIndex="toolTipIndex"
+      @listenToTipIndex="getTipDataIndex"
+      :kline-config="klineConfig"
+      :chart-data-obj="chartDataObj"
+      :cycle="cycle"
+      :indicatorType="showIndicatorChart"
+    ></Indicator>
+    <Depth ref="depth" :chart-data-obj="chartDataObj" :kline-config="klineConfig"></Depth>
   </div>
 </template>
 <script>
-import "../css/common.css";
-import KLineController from "../js/KLine";
-import { getLanguage } from "../js/utils";
+import KLine from "./mobileKline.vue";
+import Depth from "./marketDepth.vue";
+import Volume from "./volumeChart.vue";
+import TimeSharing from "./timeSharing.vue";
+import Indicator from "./IndicatorChart.vue";
+import {
+  supplementKlineData,
+  splitData,
+  handleDivisionData,
+  getDepthData,
+  calculateMA
+} from "../js/processData";
+import { formatDecimal, getLanguage, formatTime } from "../js/utils";
 export default {
-  name: "mKline",
+  name: "mobileChart",
+  components: {
+    KLine,
+    Depth,
+    Volume,
+    TimeSharing,
+    Indicator
+  },
   data() {
     return {
-      kline: null,
-      platform: "mobile",
-      currentCycle: "hour",
-      coinType: null,
-      isRefresh: true,
-      refreshKline: true,
+      showChart: "candle",
+      showIndicatorChart: null,
       message: null,
-      isSelected: false,
-      showMinCycle: false,
-      showHourCycle: false,
-      selectMin: "",
-      selectHour: "",
-      showIndicatorBtn: true,
-      showIndicatorDiv: false,
-      showIndicator: "",
-      watchLoading: true,
-      loadingTime: 0,
-      showIndicatorMA: true //是否展示MA均线
+      cycle: "",
+      chartDataObj: {},
+      dataZoom: [],
+      toolTipIndex: null,
+      toolTipData: null,
+      timeSharingTipData: null,
+      divisionTime: null,
+      candle: null,
+      volume: null,
+      macd: null,
+      stochastic: null,
+      indicator: null,
+      showIndicatorMA: true
     };
   },
   props: {
-    chartDataObj: {
+    klineDataObj: {
       type: Object,
       default: () => {
         return {};
@@ -238,230 +149,235 @@ export default {
       }
     }
   },
-  watch: {
-    chartDataObj() {
-      this.changeCycleLanguage(this.currentCycle);
-      if (!this.chartDataObj) {
-        return;
-      }
-      if (
-        ((this.chartDataObj.candleData == undefined ||
-          this.chartDataObj.candleData == []) &&
-          this.chartDataObj.cycle != "everyhour") ||
-        ((this.chartDataObj.timeDivisionData == undefined ||
-          this.chartDataObj.timeDivisionData == []) &&
-          this.chartDataObj.cycle == "everyhour")
-      ) {
-        if (this.watchLoading) {
-          this.loadingTime = this.loadingTime + 1;
-          if (this.loadingTime > 4) {
-            this.kline.showMobileLoading(true);
-          }
-        }
-        return;
-      }
-      if (this.isRefresh || this.refreshKline) {
-        this.init(true);
-        if (
-          !this.chartDataObj.candleData &&
-          this.currentCycle !== "everyhour"
-        ) {
-          return;
-        }
-        if (this.currentCycle !== "everyhour") {
-          this.watchLoading = false;
-          this.kline.setMobileOption(
-            this.klineConfig.size,
-            this.chartDataObj.candleData
-          );
-          this.isRefresh = false;
-          this.refreshKline = false;
-        } else {
-          this.kline.setTimeDivisionsOption(this.klineConfig.size);
-          this.isRefresh = false;
-          this.refreshKline = false;
-        }
-      }
-      if (this.chartDataObj.candleData) {
-        this.watchLoading = false;
-        let candleData = this.chartDataObj.candleData;
-        if (
-          this.currentCycle !== "everyhour" &&
-          candleData.values !== null &&
-          candleData.volumes !== null &&
-          candleData.categoryData !== null
-        ) {
-          let toolTipIndex = this.kline.updateMobileOption(
-            candleData,
-            this.currentCycle
-          );
-          this.coinType = this.chartDataObj.coinType;
-          this.$emit("listenTipIndex", toolTipIndex);
-        }
-      } else if (
-        JSON.stringify(this.coinType) !==
-        JSON.stringify(this.chartDataObj.coinType)
-      ) {
-        this.init(true);
-      }
-      if (this.currentCycle === "everyhour" && this.chartDataObj.divisionData) {
-        let divisionData = this.chartDataObj.divisionData;
-        this.watchLoading = false;
-        if (
-          divisionData.times !== null &&
-          divisionData.averages !== null &&
-          divisionData.prices !== null &&
-          divisionData.volumes !== null
-        ) {
-          let toolTipIndex = this.kline.updateTimeDivisionOption(
-            divisionData,
-            this.chartDataObj.precision
-          );
-          this.$emit("listenTipIndex", toolTipIndex);
-        }
-      } else if (
-        this.currentCycle === "everyhour" &&
-        !this.chartDataObj.divisionData
-      ) {
-        this.init(true);
-      }
-    }
-  },
   created() {
     this.message = getLanguage();
-    this.selectMin = this.message.minute;
-    this.selectHour = this.message.hourPC;
-    this.kline = new KLineController(this.platform, this.klineConfig);
+    this.klineConfig.platform = "mobile";
+    if (this.klineConfig.defaultMA !== false) {
+      this.klineConfig.defaultMA = true;
+      this.klineConfig.MA = [
+        {
+          name: "MA5",
+          color: "#fd1d57"
+        },
+        {
+          name: "MA10",
+          color: "#4df561"
+        },
+        {
+          name: "MA20",
+          color: "#2bdaff"
+        },
+        {
+          name: "MA30",
+          color: "#ffd801"
+        },
+        {
+          name: "MA60",
+          color: "#f721ff"
+        }
+      ];
+    }
   },
-  mounted() {
-    this.init();
-  },
-  beforeDestroy() {
-    this.dispose();
+  watch: {
+    klineDataObj() {
+      this.message = getLanguage();
+      let suppKlineData = [];
+      if (this.klineDataObj.klineData) {
+        suppKlineData = JSON.parse(JSON.stringify(this.klineDataObj.klineData));
+      }
+      this.cycle = this.klineDataObj.cycle;
+      this.klineDataObj.klineData = supplementKlineData(
+        suppKlineData,
+        this.cycle,
+        this.klineDataObj.pricePrecision
+      );
+      this.changeChartDataObj(this.klineDataObj, this.showIndicatorMA);
+    }
   },
   methods: {
-    init(clear) {
-      this.refreshKline = true;
-      this.kline.initMobileChart(this.$refs.klineRef, clear);
-    },
-    clickMinCycle() {
-      this.showIndicatorDiv = false;
-      this.showMinCycle = !this.showMinCycle;
-      if (this.showMinCycle) {
-        this.showHourCycle = false;
-      }
-    },
-    clickHourCycle() {
-      this.showIndicatorDiv = false;
-      this.showHourCycle = !this.showHourCycle;
-      if (this.showHourCycle) {
-        this.showMinCycle = false;
-      }
-    },
-    changeCycleLanguage(selectCycle) {
-      this.message = getLanguage();
-      if (selectCycle === "minute") {
-        this.selectMin = this.message.oneMin;
-        this.selectHour = this.message.hourPC;
-      } else if (selectCycle === "5minute") {
-        this.selectMin = this.message.fiveMin;
-        this.selectHour = this.message.hourPC;
-      } else if (selectCycle === "15minute") {
-        this.selectMin = this.message.fifteenMin;
-        this.selectHour = this.message.hourPC;
-      } else if (selectCycle === "30minute") {
-        this.selectMin = this.message.thirtyMin;
-        this.selectHour = this.message.hourPC;
-      } else if (selectCycle === "hour") {
-        this.selectHour = this.message.oneHour;
-        this.selectMin = this.message.minute;
-        this.selectMin = this.message.minute;
-      } else if (selectCycle === "4hour") {
-        this.selectHour = this.message.fourHour;
-        this.selectMin = this.message.minute;
-      } else {
-        this.selectMin = this.message.minute;
-        this.selectHour = this.message.hourPC;
-      }
-    },
-    chooseCycle(cycle) {
-      this.showIndicatorDiv = false;
-      if (cycle === "everyhour") {
-        this.showIndicatorBtn = false;
-      } else {
-        this.showIndicatorBtn = true;
-      }
-      if (
-        cycle === "day" ||
-        cycle === "week" ||
-        cycle === "month" ||
-        cycle === "everyhour"
-      ) {
-        this.showHourCycle = false;
-        this.showMinCycle = false;
-      }
-      let selectCycle = cycle;
-      if (cycle instanceof Object) {
-        selectCycle = cycle.target.value;
-      }
-      if (this.currentCycle === cycle) {
-        return;
-      }
-      this.changeCycleLanguage(selectCycle);
-      this.init(true);
-      this.watchLoading = true;
-      this.loadingTime = 0;
-      this.currentCycle = cycle;
-      this.isRefresh = true;
-      this.$emit("listenToChildEvent", selectCycle);
-    },
-    getToolTipIndex() {
-      let toolTipIndex;
-      if (this.currentCycle !== "everyhour") {
-        toolTipIndex = this.kline.getMobileToolTipIndex();
-      } else {
-        toolTipIndex = this.kline.getMobileToolTipIndex();
-      }
-      this.$emit("listenTipIndex", toolTipIndex);
-    },
-    changeDataZoom(type) {
-      this.kline.changeMobileDataZoom(type);
-    },
-    dispose() {
-      this.kline.disposeMobileChart();
-    },
-    openCloseIndicator() {
-      this.showHourCycle = false;
-      this.showMinCycle = false;
-      this.showIndicatorDiv = !this.showIndicatorDiv;
-    },
-    // 点击显示、隐藏MA事件
     showMA() {
       this.showIndicatorMA = !this.showIndicatorMA;
-      this.$emit("listenShowMA", this.showIndicatorMA);
-      this.showIndicatorDiv = false;
+      this.changeChartDataObj(this.klineDataObj, this.showIndicatorMA);
     },
-    showIndicatorChart(indicator) {
-      let dataZoom = this.kline.getMobileKlineDataZoom();
-      let indicatorData = {
-        dataZoom: dataZoom,
-        indicator: indicator
+    changeCycle(cycle) {
+      this.toolTipData = null;
+      this.timeSharingTipData = null;
+      this.dataZoom = null;
+      this.cycle = cycle;
+      this.toolTipIndex = null;
+      this.chartDataObj.candleData = null;
+      this.$emit("listenToChildEvent", cycle);
+    },
+    changeChartDataObj(klineDataObj, MA) {
+      let chartData = JSON.parse(JSON.stringify(klineDataObj));
+      let candleData;
+      let depthData;
+      let divisionData;
+      let timeDivisionData;
+      let dataZoomData;
+      let MAData = [];
+      let precision = {
+        price: chartData.pricePrecision,
+        amount: chartData.amountPrecision
       };
-      this.$emit("listenIndicatorChartOpenClose", indicatorData);
-      if (this.showIndicator === indicator) {
-        this.showIndicator = "";
-      } else {
-        this.showIndicator = indicator;
+      if (chartData.cycle !== "everyhour" && chartData.klineData) {
+        candleData = splitData(chartData.klineData);
+        for (var i = 0; i < this.klineConfig.MA.length; i++) {
+          MAData[i] = {};
+          MAData[i].name = this.klineConfig.MA[i].name;
+          MAData[i].data = calculateMA(
+            this.klineConfig.MA[i].name.substring(2) * 1,
+            candleData
+          );
+        }
+        candleData.MAData = MAData;
+        candleData.showIndicatorMA = this.showIndicatorMA;
+        candleData.precision = precision;
+        if (!this.toolTipIndex) {
+          this.toolTipIndex = candleData.values.length - 1;
+        }
       }
-      this.showIndicatorDiv = false;
+      if (this.dataZoom && this.dataZoom.length > 0) {
+        dataZoomData = JSON.parse(JSON.stringify(this.dataZoom));
+        this.dataZoom = null;
+      }
+      if (chartData.depthData) {
+        depthData = getDepthData(chartData.depthData, precision);
+      }
+      if (
+        chartData.cycle === "everyhour" &&
+        chartData.timeDivisionData &&
+        chartData.timeDivisionData.length > 0
+      ) {
+        timeDivisionData = chartData.timeDivisionData;
+        divisionData = handleDivisionData(timeDivisionData);
+        this.divisionTime = divisionData.divisionTime;
+        if (!this.toolTipIndex) {
+          this.toolTipIndex = divisionData.prices.length - 1;
+        }
+      }
+      this.chartDataObj = {
+        platform: "mobile",
+        precision: precision,
+        klineData: chartData.klineData,
+        indicators: this.showIndicatorChart,
+        cycle: chartData.cycle,
+        coinType: chartData.coinType,
+        index: this.toolTipIndex,
+        candleData: candleData,
+        depthData: depthData,
+        dataZoomData: dataZoomData,
+        timeDivisionData: timeDivisionData,
+        divisionData: divisionData
+      };
     },
-    openCloseEyes() {
-      if (this.showIndicator === null) {
-        this.showIndicatorDiv = !this.showIndicatorDiv;
+    getMATipData(name) {
+      for (let tipData of this.toolTipData.MAData) {
+        if (tipData.name === name) {
+          return tipData.data;
+        }
+      }
+    },
+    getIndicatorOpenClose(indicatorData) {
+      let indicator = indicatorData.indicator;
+      this.dataZoom = indicatorData.dataZoom;
+      if (this.showIndicatorChart === indicator) {
+        this.showIndicatorChart = null;
       } else {
-        this.showIndicatorChart(this.showIndicator);
+        this.showIndicatorChart = indicator;
+      }
+    },
+    getTipDataIndex(index) {
+      if (index) {
+        this.toolTipIndex = index;
+        var precision = JSON.parse(JSON.stringify(this.chartDataObj.precision));
+        var pricePrecision = !isNaN(precision.price) ? precision.price : 6;
+        var amountsPrecision = !isNaN(precision.amount) ? precision.amount : 2;
+        if (
+          this.chartDataObj.candleData &&
+          this.chartDataObj.cycle !== "everyhour"
+        ) {
+          let data = JSON.parse(JSON.stringify(this.chartDataObj.candleData));
+          if (
+            data.values[index] &&
+            data.categoryData[index] &&
+            data.volumes[index]
+          ) {
+            this.toolTipData = {
+              time: data.categoryData[index],
+              volume: formatDecimal(
+                data.values[index][5],
+                amountsPrecision,
+                true
+              ),
+              opening: formatDecimal(
+                data.values[index][0],
+                pricePrecision,
+                true
+              ),
+              closing: formatDecimal(
+                data.values[index][1],
+                pricePrecision,
+                true
+              ),
+              max: formatDecimal(data.values[index][3], pricePrecision, true),
+              min: formatDecimal(data.values[index][2], pricePrecision, true),
+              MAData: [],
+              color: data.volumes[index][2]
+            };
+          }
+          if (data.MAData) {
+            for (var i = 0; i < data.MAData.length; i++) {
+              this.toolTipData.MAData[i] = {
+                name: data.MAData[i].name,
+                data: formatDecimal(
+                  data.MAData[i].data[index],
+                  pricePrecision,
+                  true
+                )
+              };
+            }
+          }
+        } else if (
+          this.chartDataObj.divisionData &&
+          this.chartDataObj.cycle === "everyhour"
+        ) {
+          let data = JSON.parse(JSON.stringify(this.chartDataObj.divisionData));
+          if (
+            data.averages[index] &&
+            data.volumes[index] &&
+            data.prices[index]
+          ) {
+            this.timeSharingTipData = {
+              time: data.times[index],
+              volume: formatDecimal(
+                data.volumes[index][1],
+                amountsPrecision,
+                true
+              ),
+              price: formatDecimal(data.prices[index], pricePrecision, true),
+              averagePrice: formatDecimal(
+                data.averages[index],
+                pricePrecision,
+                true
+              ),
+              color: data.volumes[index][2]
+            };
+          }
+        }
+      }
+    },
+    changeDataZoom(type) {
+      if (this.cycle !== "everyhour") {
+        this.$refs.candle.changeDataZoom(type);
+        this.$refs.volume.changeDataZoom(type);
+        this.$refs.indicator.changeDataZoom(type);
+      } else if (this.cycle === "everyhour") {
+        this.$refs.candle.changeDataZoom(type);
+        this.$refs.volume.changeDataZoom(type);
       }
     }
   }
 };
 </script>
+
