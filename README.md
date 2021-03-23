@@ -27,3 +27,7 @@ Vue.use(kline)
 ```vue
 <jKline v-on:listenToChildEvent='changeCycle' :kline-data-obj='klineDataObj' :kline-config='klineConfig'></jKline>
 ```
+
+## 补充说明
+
+本控件只支持 vue2.x 不支持vue3.x 升级3.x的用户请不用尝试，会踩很多坑
