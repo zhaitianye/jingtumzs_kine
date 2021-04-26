@@ -77,8 +77,21 @@ class KLineMobileSetChartController {
         }
         let updateOption = {
             xAxis: this.getXAxis(data, cycle),
+            yAxis: this.getYAxisConfig(),
             tooltip: this.getToolTip(),
-            series: this.getSeries(data)
+            series: this.getSeries(data),
+            // 点击K线的时候，横坐标纵坐标出现的悬浮的标签样式
+            axisPointer: {
+                label: {
+                    backgroundColor: "#000000",
+                    shadowColor: 'rgba(0, 0, 0, 0.5)',
+                    shadowBlur: 10,
+                    textStyle: {
+                        color: "#ffffff",
+                        fontSize: 10,
+                    },
+                }
+            },
         };
         merge(config, updateOption);
         config.dataZoom = this.kline.getOption().dataZoom;
@@ -193,7 +206,28 @@ class KLineMobileSetChartController {
                         if (cycle === 'month') {
                             return value.substring(0, 7);
                         }
-                    }
+                        if (cycle === 'everyhour') {
+                            return value.substring(0, 7);
+                        }
+                    },
+                    textStyle: {
+                        color: "#6D86AB",
+                        fontSize: 10,
+                    },
+                }
+            }
+        ];
+    }
+
+    getYAxisConfig() {
+        return [
+            {
+                axisLabel: {
+                    // 纵坐标样式
+                    textStyle: {
+                        color: "#6D86AB",
+                        fontSize: 10,
+                    },
                 }
             }
         ];
@@ -249,7 +283,15 @@ class KLineMobileSetChartController {
                 param = param[0];
                 var index = param.data[0];
                 toolTipIndex = index;
-            }
+            },
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                color: '#6D86AB',
+                width:1,
+                type:'dashed'
+                }
+            },
         };
     }
 
@@ -270,7 +312,7 @@ class KLineMobileSetChartController {
 
     getGrid(size) {
         let g = [{
-            height: `${size.height * 0.6}px`
+            height: `${size.height * 0.5}px`
         }];
         return g;
     }

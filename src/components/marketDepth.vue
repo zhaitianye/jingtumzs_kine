@@ -137,8 +137,8 @@ export default {
         };
       }
     } else {
-      this.depthSize.height = this.klineConfig.depthSize.height + "px";
-      this.depthSize.width = this.klineConfig.depthSize.width + "px";
+      this.depthSize.height = this.klineConfig.size.height + "px";
+      this.depthSize.width = this.klineConfig.size.width + "px";
       this.isMobile = true;
     }
     this.klineConfig.chartType = "depth";

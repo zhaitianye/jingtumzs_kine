@@ -4,6 +4,7 @@
       :class="this.message.language === 'zh' ? 'mobile-tooltip-zh' : 'mobile-tooltip-en'"
       v-if="toolTipData"
     >
+      <!-- 开、收、高、低、量 -->
       <div style="margin-left: -0.1rem; margin-top: 0.05rem;">
         <font class="mobile-tooltip-name">{{message.openingMobile}}</font>
         <font class="mobile-tooltip-data">{{this.toolTipData.opening}}</font>
@@ -16,11 +17,12 @@
         <font class="mobile-tooltip-name">{{message.volumeMobile}}</font>
         <font class="mobile-tooltip-data">{{this.toolTipData.volume}}</font>
       </div>
-      <div v-show="showIndicatorMA" style="font-size:0.16rem; margin-top: 0.1rem;">
+      <!-- 显示MA指标 -->
+      <div v-show="showIndicatorMA" style="font-size:0.26rem; margin-top: 0.1rem;">
         <font
           v-for="MAitem in this.klineConfig.MA"
           :key="MAitem.id"
-          :style="{ color: MAitem.color, marginRight: '0.14rem'}"
+          :style="{ color: MAitem.color, marginRight: '0.5rem'}"
         >
           {{MAitem.name}}
           <font>:&nbsp;{{ getMATipData(MAitem.name) }}</font>
@@ -51,7 +53,7 @@
       <br />
     </div>
     <!-- 平移、刷新、缩放按钮 -->
-    <div class="kline-levitation-mobile-div">
+    <!-- <div class="kline-levitation-mobile-div">
       <div class="kline-levitation-icon">
         <div class="kline-levitation-btn" @click="changeDataZoom('narrow')">
           <i class="narrow-icon"></i>
@@ -60,7 +62,7 @@
           <i class="enlarge-icon"></i>
         </div>
       </div>
-    </div>
+    </div> -->
     <KLine
       ref="candle"
       v-show="showChart === 'candle'"
@@ -71,14 +73,16 @@
       :kline-config="klineConfig"
       :chart-data-obj="chartDataObj"
     ></KLine>
-    <Volume
+
+    <!-- 屏蔽交易量 -->
+    <!-- <Volume
       ref="volume"
       v-show="showChart === 'candle'"
       v-on:listenToTipIndex="getTipDataIndex"
       :kline-config="klineConfig"
       :chart-data-obj="chartDataObj"
       :cycle="cycle"
-    ></Volume>
+    ></Volume> -->
     <Indicator
       ref="indicator"
       v-show="showIndicatorChart != null &&cycle !== 'everyhour'"
@@ -89,7 +93,8 @@
       :cycle="cycle"
       :indicatorType="showIndicatorChart"
     ></Indicator>
-    <Depth ref="depth" :chart-data-obj="chartDataObj" :kline-config="klineConfig"></Depth>
+    <!-- 屏蔽深度图 -->
+    <!-- <Depth ref="depth" :chart-data-obj="chartDataObj" :kline-config="klineConfig"></Depth> -->
   </div>
 </template>
 <script>

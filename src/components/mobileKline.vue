@@ -1,7 +1,7 @@
 <template>
-  <div class="mobile-kline" style="background-color: #161b21;">
+  <div class="mobile-kline" style="background-color: #212743;">
     <!-- Cycle按钮 -->
-    <div calss="mobileCycle" style="height: 55px; z-index: 9;">
+    <div calss="mobileCycle" style="height: 16px; z-index: 9;">
       <div class="kline-cycle-div">
         <div @click="clickMinCycle()">
           <div
@@ -68,17 +68,21 @@
         @click="chooseCycle('month')"
         :class="this.currentCycle === 'month' ? 'mobile-cycle-btn mobile-btn-active' : 'mobile-cycle-btn'"
       >{{message.month}}</div>
-      <div
+
+      <!-- 屏蔽分时 -->
+      <!-- <div
         @click="chooseCycle('everyhour')"
         :class="this.currentCycle === 'everyhour' ? 'mobile-cycle-btn mobile-btn-active' : 'mobile-cycle-btn'"
-      >{{message.timeSharing}}</div>
+      >{{message.timeSharing}}</div> -->
+
+
       <!-- 指标线图标 -->
-      <div @click="openCloseIndicator" class="indicator-select-div">
+      <!-- <div @click="openCloseIndicator" class="indicator-select-div">
         <i
           v-show="showIndicatorBtn"
           :class="this.showIndicatorDiv ? 'icon iconfont icon-indicator-selected' : 'icon iconfont icon-indicator-unselected'"
         ></i>
-      </div>
+      </div> -->
     </div>
     <!-- 指标线按钮 -->
     <div v-show="showIndicatorDiv && currentCycle !== 'everyhour'" class="indicatorConfigure">
@@ -190,10 +194,11 @@
     <div
       id="kline"
       ref="klineRef"
-      :style="{height: `${klineConfig.size.height * 0.82}px`, width: `${klineConfig.size.width}px`}"
+      :style="{height: `${klineConfig.size.height * 0.85}px`, width: `${klineConfig.size.width}px`}"
       @click="getToolTipIndex"
     ></div>
-    <div style="background:#2b2f33; height:0.1rem"></div>
+    <!-- 屏蔽K线和交易量中间的分割线 -->
+    <!-- <div style="background:#2b2f33; height:0.1rem"></div> -->
   </div>
 </template>
 <script>

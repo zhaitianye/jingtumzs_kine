@@ -102,7 +102,20 @@ class VolumeChart {
                 yAxis: this.getVolumeYAxis(),
                 tooltip: this.getVolumeToolTip(),
                 series: this.getVolumeSeries(data),
-                dataZoom: this.getDataZoom(data)
+                dataZoom: this.getDataZoom(data),
+                axisPointer: {
+                    // 点击交易量的时候，横坐标纵坐标出现的悬浮的标签样式
+                    label: {
+                        backgroundColor: "#000000",
+                        shadowColor: 'rgba(0, 0, 0, 0.5)',
+                        shadowBlur: 10,
+                        textStyle: {
+                            color: "#ffffff",
+                            fontSize: 10,
+                            fontWeight: 400,
+                        },
+                    }
+                },
             };
             merge(volumeOption, option);
             this.volume.setOption(volumeOption, true);
@@ -181,7 +194,13 @@ class VolumeChart {
                         } else {
                             return value;
                         }
-                    }
+                    },
+                    // 纵坐标样式
+                    textStyle: {
+                        color: "#6D86AB",
+                        fontSize: 10,
+                        fontWeight: 400,
+                      },
                 }
             }
         ];
@@ -195,9 +214,10 @@ class VolumeChart {
                     var index = param.data[0];
                     toolTipIndex = index;
                 }
-            }
+            },
         };
     }
+
 
     getVolumeSeries(data) {
         var barWidth;
