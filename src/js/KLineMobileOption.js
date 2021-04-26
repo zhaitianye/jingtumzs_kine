@@ -29,8 +29,8 @@ var mobileOption = {
     },
     grid: [ // 直角坐标系内绘图网格
         {
-            left: 20, // grid 组件离容器左侧的距离。
-            right: 10, // grid 组件离容器右侧的距离。
+            left: 0, // grid 组件离容器左侧的距离。
+            right: 0, // grid 组件离容器右侧的距离。
             top: 60,
             bottom: 5
         }
