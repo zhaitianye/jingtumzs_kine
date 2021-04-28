@@ -30,7 +30,7 @@ var mobileOption = {
     grid: [ // 直角坐标系内绘图网格
         {
             left: 0, // grid 组件离容器左侧的距离。
-            right: 0, // grid 组件离容器右侧的距离。
+            right: 20, // grid 组件离容器右侧的距离。
             top: 60,
             bottom: 5
         }
@@ -86,7 +86,7 @@ var mobileOption = {
             },
             axisLabel: { // 坐标轴刻度标签的相关设置
                 show: true, // 是否显示刻度标签
-                margin: 0, // 刻度标签与轴线之间的距离
+                margin: -20, // 刻度标签与轴线之间的距离
                 color: '#b7c2ce', // 刻度标签文字的颜色
                 fontSize: 22, // 文字的字体大小
                 verticalAlign: 'bottom',
