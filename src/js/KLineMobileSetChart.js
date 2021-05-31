@@ -15,7 +15,7 @@ var toolTipIndex;
 var tipsLastLength = true;
 var isTimeDivisionsDataZoom = false;
 
-
+// 配置K线
 class KLineMobileSetChartController {
     constructor(configs) {
         this.klineConfig = configs;
@@ -211,7 +211,7 @@ class KLineMobileSetChartController {
                         }
                     },
                     textStyle: {
-                        color: "#6D86AB",
+                        color: "#333",
                         fontSize: 10,
                     },
                 }
@@ -222,12 +222,18 @@ class KLineMobileSetChartController {
     getYAxisConfig() {
         return [
             {
+                
                 axisLabel: {
                     // 纵坐标样式
                     textStyle: {
-                        color: "#6D86AB",
+                        color: "#999",
                         fontSize: 10,
                     },
+                    // 保留小数点后四位    
+                    formatter: function (value, index) {
+                        return value.toFixed(4);
+                    }
+
                 }
             }
         ];
@@ -287,9 +293,9 @@ class KLineMobileSetChartController {
             axisPointer: {
                 type: 'cross',
                 crossStyle: {
-                color: '#6D86AB',
-                width:1,
-                type:'dashed'
+                    color: '#6D86AB',
+                    width: 1,
+                    type: 'dashed'
                 }
             },
         };

@@ -34,7 +34,7 @@
     cursor: pointer;
     margin-left: 8px;
     text-align: center;
-    color: #e6e6e6;
+    color: #666;
     line-height: 20px;
     font-size: 11px !important;
     border-radius: 2px;
@@ -128,12 +128,12 @@
 
 .icon-indicator-ed {
     font-size: 18px !important;
-    color: #1bdafd;
+    color: #333;
 }
 
 .icon-indicator:hover {
     font-size: 18px;
-    color: #1bdafd;
+    color: #333;
 }
 
 .icon-indicator-unselected {
@@ -143,12 +143,12 @@
 
 .icon-indicator-selected {
     font-size: 12px !important;
-    color: #1bdafd;
+    color: #333;
 }
 
 .icon-indicator-selected:hover {
     font-size: 12px !important;
-    color: #1bdafd;
+    color: #333;
 }
 
 .close-icon {
@@ -207,7 +207,7 @@
     margin-left: 10px;
     float: left;
     font-size: 0.24rem;
-    color: #e6e6e6;
+    color: #999;
     margin: 0.15rem 0.15rem 0 0.2rem;
     width: 0.7rem;
     border-right: solid #e6e6e6;
@@ -229,7 +229,7 @@
 
 .mobile-indicator-div-active {
     font-family: "Microsoft YaHei";
-    color: #1bdafd;
+    color: #333;
     font-size: 0.24rem;
     float: left;
     margin: 0.2rem 0.15rem 0 0.15rem;
@@ -324,12 +324,12 @@
 
 .icon-popover-close:hover {
     font-size: 10px;
-    color: #1bdafd;
+    color: #333;
 }
 
 .icon-full-screen:hover {
     font-size: 16px !important;
-    color: #1bdafd;
+    color: #333;
     cursor: pointer;
 }
 
@@ -341,7 +341,7 @@
 
 .icon-exit-full-screen:hover {
     font-size: 16px !important;
-    color: #1bdafd;
+    color: #333;
 }
 
 .tooltip-data-name {
@@ -535,7 +535,7 @@
     margin-left: 0.35rem;
     margin-top: 0.08rem;
     text-align: center;
-    color: #e6e6e6;
+    color: #999;
     line-height: 0.2rem;
     font-size: 0.24rem;
     border-radius: 0.02rem;
@@ -543,8 +543,8 @@
 }
 
 .mobile-btn-active {
-    border-bottom: 0.02rem solid #1bdafd;
-    color: #1bdafd;
+    border-bottom: 0.02rem solid #333;
+    color: #333;
 }
 
 .mobile-cycle {
@@ -561,6 +561,7 @@
 .mobile-cycle-time span {
     color: #ffffff;
     padding-top: 0.01rem;
+    background-color: transparent;
 }
 
 .mobile-cycle span {
@@ -691,16 +692,16 @@
 }
 
 .mobile-tooltip-name {
-    color: #e6e6e6;
+    color: #999;
     margin-left: 0.1rem;
 }
 
 .mobile-tooltip-data {
-    color: #e6e6e6;
+    color: #999;
 }
 
 .mobile-tooltip-volume {
-    color: #e6e6e6;
+    color: #999;
     float: right
 }
 
@@ -882,7 +883,7 @@
 }
 
 .kline-cycle-div {
-    color: #e6e6e6;
+    color: #999;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -910,11 +911,11 @@
 }
 
 .kline-uncheck-color {
-    color: #e6e6e6;
+    color: #999;
 }
 
 .kline-select-color {
-    color: #1bdafd;
+    color: #333;
 }
 
 .kline-cycle-float {
@@ -948,7 +949,7 @@
 }
 
 .kline-cycle-detail:hover {
-    color: #1bdafd;
+    color: #333;
 }
 
 .kline-margin-left10 {

@@ -11,6 +11,7 @@ var volumeOption;
 var oldVolumeData;
 var toolTipIndex;
 
+// 交易量
 class VolumeChart {
     constructor(configs) {
         this.volumeConfig = configs;
@@ -187,17 +188,18 @@ class VolumeChart {
                 gridIndex: 0,
                 axisLabel: {
                     formatter: function (value) {
-                        if (value >= 1000 && value < 1000000) {
-                            return (value / 1000) + 'K';
-                        } else if (value >= 1000000) {
-                            return (value / 1000000) + 'M';
-                        } else {
-                            return value;
-                        }
+                        // if (value >= 1000 && value < 1000000) {
+                        //     return (value / 1000) + 'K';
+                        // } else if (value >= 1000000) {
+                        //     return (value / 1000000) + 'M';
+                        // } else {
+                        //     return value;
+                        // }
+                        return value;
                     },
                     // 纵坐标样式
                     textStyle: {
-                        color: "#6D86AB",
+                        color: "#999",
                         fontSize: 10,
                         fontWeight: 400,
                       },

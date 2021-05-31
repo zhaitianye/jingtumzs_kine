@@ -70,20 +70,22 @@
       v-on:listenTipIndex="getTipDataIndex"
       v-on:listenIndicatorChartOpenClose="getIndicatorOpenClose"
       @listenShowMA="showMA"
+      style="margin-left: 16px; margin-right: 16px;"
       :kline-config="klineConfig"
       :chart-data-obj="chartDataObj"
     ></KLine>
 
     <!-- 屏蔽交易量 -->
-    <!-- <Volume
+    <Volume
       ref="volume"
       v-show="showChart === 'candle'"
       v-on:listenToTipIndex="getTipDataIndex"
       :kline-config="klineConfig"
       :chart-data-obj="chartDataObj"
       :cycle="cycle"
-    ></Volume> -->
-    <Indicator
+      style=" margin-right: 10px; padding-top: 0px !important;"
+    ></Volume>
+    <!-- <Indicator
       ref="indicator"
       v-show="showIndicatorChart != null &&cycle !== 'everyhour'"
       :toolTipIndex="toolTipIndex"
@@ -92,7 +94,7 @@
       :chart-data-obj="chartDataObj"
       :cycle="cycle"
       :indicatorType="showIndicatorChart"
-    ></Indicator>
+    ></Indicator> -->
     <!-- 屏蔽深度图 -->
     <!-- <Depth ref="depth" :chart-data-obj="chartDataObj" :kline-config="klineConfig"></Depth> -->
   </div>

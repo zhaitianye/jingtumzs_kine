@@ -34,7 +34,7 @@ var option = {
             axisLine: {  // 坐标轴轴线相关设置
                 onZero: false, // X 轴或者 Y 轴的轴线是否在另一个轴的 0 刻度上，只有在另一个轴为数值轴且包含 0 刻度时有效
                 lineStyle: { // 坐标轴线线的样式
-                    color: '#37404b'
+                    color: '#666'
                 }
             },
             splitLine: {  // 坐标轴在 grid 区域中的分隔线
@@ -42,13 +42,13 @@ var option = {
             },
             axisLabel: { // 坐标轴刻度标签的相关设置
                 show: true, // 是否显示刻度标签
-                color: '#9aa4ac', // 刻度标签文字的颜色
+                color: '#666', // 刻度标签文字的颜色
                 showMinLabel: false // 是否显示最小 tick 的 label。可取值 true, false, null。默认自动判定（即如果标签重叠，不会显示最小 tick 的 label）。
             },
             axisTick: { // 坐标轴刻度相关设置
                 alignWithLabel: true // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐
             },
-            // splitNumber: 20, // 坐标轴的分割段数，需要注意的是这个分割段数只是个预估值，最后实际显示的段数会在这个基础上根据分割后坐标轴刻度显示的易读程度作调整。在类目轴中无效
+            splitNumber: 2, // 坐标轴的分割段数，需要注意的是这个分割段数只是个预估值，最后实际显示的段数会在这个基础上根据分割后坐标轴刻度显示的易读程度作调整。在类目轴中无效
             min: 'dataMin', // 坐标轴刻度最小值，设置成特殊值 'dataMin'，此时取数据在该轴上的最小值作为最小刻度
             max: 'dataMax', // 坐标轴刻度最大值，设置成特殊值 'dataMax'，此时取数据在该轴上的最大值作为最大刻度
             axisPointer: {  // 坐标轴指示器
@@ -59,31 +59,6 @@ var option = {
     yAxis: [ // 直角坐标系 grid 中的y轴
         {
             scale: true, // 只在数值轴中（type: 'value'）有效
-            gridIndex: 0, // y 轴所在的 grid 的索引，默认位于第一个 grid
-            position: 'right', // y 轴的位置,right代表y轴在右侧
-            splitArea: { // 坐标轴在 grid 区域中的分隔区域，默认不显示
-                show: false
-            },
-            splitLine: { // 坐标轴在 grid 区域中的分隔线
-                lineStyle: {
-                    color: '#37404b',
-                    type: 'dashed',
-                    opacity: 0.6
-                }
-            },
-            axisLine: { // 坐标轴轴线
-                show: false,
-                // lineStyle: {
-                //     color: '#37404b'
-                // }
-            },
-            axisLabel: { // 坐标轴刻度标签的相关设置
-                show: true, // 是否显示刻度标签
-                margin: 0, // 刻度标签与轴线之间的距离
-                color: '#9aa4ac', // 刻度标签文字的颜色
-                fontSize: 12, // 刻度标签文字的字体大小
-                verticalAlign: 'middle' // 文字垂直对齐方式，默认自动
-            }
         }
     ],
     dataZoom: [ // 用于区域缩放，从而能自由关注细节的数据信息，或者概览数据整体，或者去除离群点的影响

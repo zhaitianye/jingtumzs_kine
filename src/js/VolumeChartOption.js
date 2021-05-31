@@ -123,13 +123,14 @@ var volumeMoobileOption = {
     },
     grid: [ // 直角坐标系内绘图网格
         {
-            top: 30,
-            left: 20,
+            top: 10,
+            left: 10,
             right: 10,
             bottom: 10, // grid 组件离容器下侧的距离。
             // backgroundColor: "#1b2229", // 网格背景色
-            borderColor: '#1b2229', // 网格的边框颜色
-            show: true // 是否显示直角坐标系网格。
+            // borderColor: '#1b2229', // 网格的边框颜色
+            // show: true // 是否显示直角坐标系网格。
+            containLabel: true, // 这常用于『防止标签溢出』的场景，标签溢出指的是，标签长度动态变化时，可能会溢出容器或者覆盖其他组件。
         }
     ],
     xAxis: [ // 直角坐标系 grid 中的 x 轴
@@ -163,31 +164,36 @@ var volumeMoobileOption = {
     ],
     yAxis: [ // 直角坐标系 grid 中的y轴
         {
-            scale: true,
-            gridIndex: 0,
-            splitNumber: 2,
+            scale: true, // 只在数值轴中（type: 'value'）有效
             position: 'right',
-            splitLine: {
-                lineStyle: {
-                    color: '#37404b',
-                    type: 'dashed',
-                    opacity: 0.6
+            splitArea: { // 坐标轴在 grid 区域中的分隔区域，默认不显示
+                show: false // false代表不显示
+            },
+            splitLine: { // 坐标轴在 grid 区域中的分隔线
+                lineStyle: { // 分割线样式
+                    color: '#ECEEF3', // 分隔线颜色
+                    type: 'solid', // 分隔线线的类型，dotted表示点虚线
+                    // opacity: 0.6
                 }
             },
-            axisLine: {
-                show: false,
+             axisLine: {
+                // 坐标轴轴线
+                show: true,
                 lineStyle: {
-                    color: '#37404b'
-                }
+                    color: "#666",
+                    type: "solid", // (实线：'solid'，虚线：'dashed'，星罗棋布的：'dotted')
+                },
             },
             axisLabel: {
-                show: true,
-                inside: true,
-                margin: 0,
-                color: '#9aa4ac',
-                fontSize: 22,
-                verticalAlign: 'bottom'
-            }
+                // 坐标轴刻度标签的相关设置
+                show: true, // 是否显示刻度标签
+                margin: 10, // 刻度标签与轴线之间的距离
+                color: "#666", // 刻度标签文字的颜色
+                fontSize: 12, // 刻度标签文字的字体大小
+                verticalAlign: "center", // 文字垂直对齐方式，默认自动
+            },
+
+            splitNumber: 2, // 
         }
     ],
     dataZoom: [ // 用于区域缩放，从而能自由关注细节的数据信息，或者概览数据整体，或者去除离群点的影响

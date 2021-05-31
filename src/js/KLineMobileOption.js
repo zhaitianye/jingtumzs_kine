@@ -30,9 +30,10 @@ var mobileOption = {
     grid: [ // 直角坐标系内绘图网格
         {
             left: 0, // grid 组件离容器左侧的距离。
-            right: 20, // grid 组件离容器右侧的距离。
+            right: 0, // grid 组件离容器右侧的距离。
             top: 60,
-            bottom: 5
+            bottom: 0,
+            containLabel: true, // 这常用于『防止标签溢出』的场景，标签溢出指的是，标签长度动态变化时，可能会溢出容器或者覆盖其他组件。
         }
     ],
     xAxis: [ // 直角坐标系 grid 中的 x 轴
@@ -44,7 +45,7 @@ var mobileOption = {
             axisLine: { // 坐标轴轴线相关设置
                 onZero: false, // X 轴或者 Y 轴的轴线是否在另一个轴的 0 刻度上，只有在另一个轴为数值轴且包含 0 刻度时有效
                 lineStyle: { // 坐标轴线线的样式
-                    color: '#37404b', // 坐标轴线线的颜色
+                    color: '#666', // 坐标轴线线的颜色
                     width: 1.5 // 坐标轴线线宽
                 }
             },
@@ -53,7 +54,7 @@ var mobileOption = {
             },
             axisLabel: { // 坐标轴刻度标签的相关设置
                 show: true, // 是否显示刻度标签
-                color: '#b7c2ce', // 刻度标签文字的颜色
+                color: '#666', // 刻度标签文字的颜色
                 fontSize: 22, // 文字的字体大小
             },
             axisTick: { // 坐标轴刻度相关设置
@@ -73,25 +74,29 @@ var mobileOption = {
             },
             splitLine: { // 坐标轴在 grid 区域中的分隔线
                 lineStyle: { // 分割线样式
-                    color: '#37404b', // 分隔线颜色
-                    type: 'dashed', // 分隔线线的类型，dotted表示点虚线
-                    opacity: 0.6
+                    color: '#ECEEF3', // 分隔线颜色
+                    type: 'solid', // 分隔线线的类型，dotted表示点虚线
+                    // opacity: 0.6
                 }
             },
-            axisLine: { // 坐标轴轴线相关设置
-                show: false, // 是否显示坐标轴轴线是否显示坐标轴轴线
-                lineStyle: { // 轴线样式
-                    color: '#37404b'
-                }
+             axisLine: {
+                // 坐标轴轴线
+                show: true,
+                lineStyle: {
+                    color: "#666",
+                    type: "solid", // (实线：'solid'，虚线：'dashed'，星罗棋布的：'dotted')
+                },
             },
-            axisLabel: { // 坐标轴刻度标签的相关设置
+            axisLabel: {
+                // 坐标轴刻度标签的相关设置
                 show: true, // 是否显示刻度标签
-                margin: -20, // 刻度标签与轴线之间的距离
-                color: '#b7c2ce', // 刻度标签文字的颜色
-                fontSize: 22, // 文字的字体大小
-                verticalAlign: 'bottom',
-                inside: true
-            }
+                margin: 10, // 刻度标签与轴线之间的距离
+                color: "#666", // 刻度标签文字的颜色
+                fontSize: 12, // 刻度标签文字的字体大小
+                verticalAlign: "center", // 文字垂直对齐方式，默认自动
+            },
+
+            splitNumber: 2, // 
         }
     ],
     series: [ // 系列列表。每个系列通过 type 决定自己的图表类型

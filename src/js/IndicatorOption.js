@@ -57,7 +57,7 @@ var indicatorOption = {
             position: 'right',
             splitLine: {
                 lineStyle: {
-                    color: '#37404b',
+                    color: '#666',
                     type: 'dashed',
                     opacity: 0.6
                 }
@@ -65,7 +65,7 @@ var indicatorOption = {
             axisLine: {
                 show: false,
                 lineStyle: {
-                    color: '#37404b'
+                    color: '#666'
                 }
             },
             axisLabel: {
@@ -163,7 +163,7 @@ var mobileIndicatorsOption = {
             position: 'right',
             splitLine: {
                 lineStyle: {
-                    color: '#37404b',
+                    color: '#666',
                     type: 'dashed',
                     opacity: 0.6
                 }
@@ -171,7 +171,7 @@ var mobileIndicatorsOption = {
             axisLine: {
                 show: false,
                 lineStyle: {
-                    color: '#37404b'
+                    color: '#666'
                 }
             },
             axisLabel: {
